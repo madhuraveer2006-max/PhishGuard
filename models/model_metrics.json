@@ -1,0 +1,67 @@
+{
+    "dataset": {
+        "total_samples": 160064,
+        "training_samples": 128051,
+        "testing_samples": 32013,
+        "legitimate_samples": 820,
+        "phishing_samples": 159244,
+        "positive_class": "Phishing (1)",
+        "negative_class": "Legitimate (0)"
+    },
+    "models": {
+        "random_forest": {
+            "name": "Random Forest",
+            "accuracy": 99.856308,
+            "balanced_accuracy": 96.894703,
+            "precision": 99.968576,
+            "recall": 99.886967,
+            "f1_score": 99.927755,
+            "confusion_matrix": [
+                [
+                    154,
+                    10
+                ],
+                [
+                    36,
+                    31813
+                ]
+            ]
+        },
+        "svm": {
+            "name": "Support Vector Machine",
+            "accuracy": 99.721988,
+            "balanced_accuracy": 99.55697,
+            "precision": 99.996852,
+            "recall": 99.723696,
+            "f1_score": 99.860087,
+            "confusion_matrix": [
+                [
+                    163,
+                    1
+                ],
+                [
+                    88,
+                    31761
+                ]
+            ]
+        },
+        "gradient_boosting": {
+            "name": "Gradient Boosting",
+            "accuracy": 99.834442,
+            "balanced_accuracy": 99.00687,
+            "precision": 99.990567,
+            "recall": 99.843009,
+            "f1_score": 99.916733,
+            "confusion_matrix": [
+                [
+                    161,
+                    3
+                ],
+                [
+                    50,
+                    31799
+                ]
+            ]
+        }
+    }
+}

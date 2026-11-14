@@ -1,0 +1,40 @@
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+PhishGuard_env/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Database (avoid uploading personal records)
+phishguard.db
+
+# IDE
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary analysis files
+audit_dataset.py
+check_dataset.py
+deep_feature_check.py
+inspect_num_subdirs.py
+inspect_url_length.py
+inspect_url_samples.py
+investigate_features.py
+investigate_remaining_features.py
+test_without_num_subdirs.py
+validate_models.py
+verify_all_features.py
+verify_feature_definitions.py
+feature_importance.csv
+results_without_num_subdirs.csv
+single_feature_results.csv
+train1.py
