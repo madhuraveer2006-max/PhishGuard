@@ -43,25 +43,25 @@ def calculate_entropy(text):
 
 def extract_features(url):
 
-    raw_url = str(url).strip()
+    original_url = str(url).strip()
 
-    if not raw_url:
+    if not original_url:
         raise ValueError("URL cannot be empty")
 
-    # Remove HTTP/HTTPS scheme to prevent label shortcut
+    # Preserve the HTTPS signal before normalizing the URL.
+    has_https = int(original_url.lower().startswith("https://"))
+
+    # Remove the scheme only for the remaining URL-text features.
     raw_url = re.sub(
         r"^https?://",
         "",
-        raw_url,
+        original_url,
         flags=re.IGNORECASE
     )
 
     # Parse normalized URL
     parsed = urlparse("http://" + raw_url)
     host = parsed.hostname or ""
-
-    # HTTPS feature disabled after removing scheme
-    has_https = 0
 
     # Check IP address
     try:

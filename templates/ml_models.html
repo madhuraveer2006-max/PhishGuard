@@ -15,38 +15,29 @@
             color: #243047;
             font-family: Arial, sans-serif;
         }
-
         .navbar {
             background: white;
             box-shadow: 0 2px 12px #17255412;
         }
-
         .brand {
             color: #2457c5;
             font-size: 23px;
             font-weight: 800;
         }
-
         .nav-link {
             color: #475569;
             font-weight: 600;
         }
-
-        .nav-link:hover,
-        .nav-link.active {
+        .nav-link:hover, .nav-link.active {
             color: #2457c5;
         }
-
         .hero {
             background: linear-gradient(120deg, #e8f0ff, #f5f7ff);
             border: 1px solid #dce7ff;
             border-radius: 20px;
             padding: 35px 25px;
         }
-
-        .model-card,
-        .table-card,
-        .chart-card {
+        .model-card, .table-card, .chart-card {
             background: white;
             border: 1px solid #e5ebf4;
             border-radius: 17px;
@@ -54,7 +45,6 @@
             height: 100%;
             box-shadow: 0 5px 18px #17255408;
         }
-
         .model-icon {
             width: 52px;
             height: 52px;
@@ -66,34 +56,28 @@
             color: #2457c5;
             font-size: 25px;
         }
-
         .accuracy {
             font-size: 32px;
             color: #2457c5;
             font-weight: 800;
             margin-top: 18px;
         }
-
         .metric-label {
             color: #64748b;
             font-size: 13px;
         }
-
         .section-title {
             font-weight: 800;
             margin-bottom: 20px;
         }
-
         .table thead th {
             background: #edf3ff;
             color: #334155;
             white-space: nowrap;
         }
-
         .table td {
             white-space: nowrap;
         }
-
         .metric-box {
             background: #f8faff;
             border: 1px solid #e5ebf4;
@@ -101,63 +85,80 @@
             border-radius: 12px;
             height: 100%;
         }
-
         .metric-value {
             color: #2457c5;
             font-size: 21px;
             font-weight: 800;
         }
-
         .chart-card {
             padding: 24px;
             margin-bottom: 20px;
         }
-
         .chart-heading {
             font-size: 17px;
             font-weight: 700;
             margin-bottom: 6px;
         }
-
         .chart-description {
             color: #64748b;
             font-size: 13px;
             margin-bottom: 20px;
         }
-
         .chart-container {
             position: relative;
             width: 100%;
             height: 320px;
         }
-
+        .latest-scan-card {
+            background: white;
+            border: 1px solid #dce7ff;
+            border-radius: 17px;
+            padding: 25px;
+            box-shadow: 0 5px 18px #17255408;
+            margin-bottom: 24px;
+        }
+        .scan-url {
+            overflow-wrap: anywhere;
+            color: #2457c5;
+            font-weight: 600;
+        }
+        .prediction-status {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .status-phishing {
+            background: #ffe0e0;
+            color: #a52828;
+        }
+        .status-legitimate {
+            background: #d9f5e5;
+            color: #176b3a;
+        }
         .matrix-cell {
             font-size: 19px;
             font-weight: 800;
             padding: 18px 10px !important;
             min-width: 75px;
         }
-
         .heatmap-tn {
             background: #d9f5e5 !important;
             color: #176b3a !important;
         }
-
         .heatmap-fp {
             background: #fff0d6 !important;
             color: #9a5b00 !important;
         }
-
         .heatmap-fn {
             background: #ffe0e0 !important;
             color: #a52828 !important;
         }
-
         .heatmap-tp {
             background: #dceaff !important;
             color: #174a9c !important;
         }
-
         .matrix-legend {
             display: flex;
             flex-wrap: wrap;
@@ -167,32 +168,23 @@
             font-size: 12px;
             color: #475569;
         }
-
         .legend-item {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-
         .legend-color {
             height: 12px;
             width: 12px;
             border-radius: 3px;
         }
-
         .footer-note {
             color: #64748b;
             font-size: 13px;
         }
-
         @media (max-width: 576px) {
-            .chart-container {
-                height: 270px;
-            }
-
-            .hero {
-                padding: 25px 15px;
-            }
+            .chart-container { height: 270px; }
+            .hero { padding: 25px 15px; }
         }
     </style>
 </head>
@@ -201,16 +193,13 @@
 
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
-
         <a class="navbar-brand brand" href="{{ url_for('dashboard') }}">
             <i class="bi bi-shield-lock-fill"></i> PhishGuard
         </a>
-
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="nav">
             <div class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
                 <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
@@ -226,19 +215,13 @@
 
 <div class="container py-4">
 
-    <!-- HERO -->
-
     <div class="hero text-center mb-4">
         <i class="bi bi-cpu display-3 text-primary"></i>
-
         <h1 class="fw-bold mt-3">Machine Learning Models</h1>
-
         <p class="text-secondary mb-0">
             Algorithms used in PhishGuard and their test dataset performance.
         </p>
     </div>
-
-    <!-- ALGORITHMS -->
 
     <h4 class="section-title">Algorithms Used</h4>
 
@@ -261,63 +244,43 @@
     } %}
 
     <div class="row g-3 mb-4">
-
         {% for key, model in models.items() %}
-
         <div class="col-lg-4">
             <div class="model-card">
-
                 <div class="model-icon">
                     <i class="bi {{ descriptions.get(key, {}).get('icon', 'bi-cpu') }}"></i>
                 </div>
-
                 <h5 class="fw-bold mt-3">{{ model.name }}</h5>
-
                 <p class="text-secondary">
                     {{ descriptions.get(key, {}).get('description', 'Machine learning classification algorithm.') }}
                 </p>
-
                 <div class="accuracy">
                     {{ "%.2f"|format(model.accuracy) }}%
                 </div>
-
                 <div class="metric-label">Test Accuracy</div>
-
                 <hr>
-
                 <p class="small mb-0">
                     {{ descriptions.get(key, {}).get('extra', '') }}
                 </p>
-
             </div>
         </div>
-
         {% else %}
-
         <div class="col-12">
             <div class="alert alert-warning">
                 Model metrics are not available. Please run train.py first.
             </div>
         </div>
-
         {% endfor %}
-
     </div>
-
-    <!-- PERFORMANCE TABLE -->
 
     <h4 class="section-title">Model Performance Comparison</h4>
 
     <div class="table-card mb-4">
-
         <p class="text-secondary">
             Performance metrics calculated on the held-out test dataset.
         </p>
-
         <div class="table-responsive">
-
             <table class="table table-bordered table-hover text-center align-middle">
-
                 <thead>
                     <tr>
                         <th>Algorithm</th>
@@ -328,11 +291,8 @@
                         <th>F1-Score</th>
                     </tr>
                 </thead>
-
                 <tbody>
-
                     {% for key, model in models.items() %}
-
                     <tr>
                         <th>{{ model.name }}</th>
                         <td>{{ "%.2f"|format(model.accuracy) }}%</td>
@@ -341,23 +301,15 @@
                         <td>{{ "%.2f"|format(model.recall) }}%</td>
                         <td>{{ "%.2f"|format(model.f1_score) }}%</td>
                     </tr>
-
                     {% endfor %}
-
                 </tbody>
-
             </table>
-
         </div>
-
         <p class="small text-secondary mb-0">
             Values are rounded to two decimal places and loaded directly
             from the model evaluation results.
         </p>
-
     </div>
-
-    <!-- GRAPHS -->
 
     <h4 class="section-title">
         <i class="bi bi-graph-up-arrow text-primary"></i>
@@ -365,79 +317,112 @@
     </h4>
 
     <div class="row g-3 mb-4">
-
         <div class="col-lg-6">
-
             <div class="chart-card">
-
                 <h5 class="chart-heading">Accuracy Comparison</h5>
-
                 <p class="chart-description">
                     Zoomed view of test accuracy. Vertical axis starts at 99%.
                 </p>
-
                 <div class="chart-container">
                     <canvas id="accuracyChart"></canvas>
                 </div>
-
             </div>
-
         </div>
-
         <div class="col-lg-6">
-
             <div class="chart-card">
-
                 <h5 class="chart-heading">Precision, Recall & F1-Score</h5>
-
                 <p class="chart-description">
                     Comparison of classification metrics across all models.
                 </p>
-
                 <div class="chart-container">
                     <canvas id="metricsChart"></canvas>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <div class="alert alert-info small mb-4">
-
         <strong>Graph interpretation:</strong>
-
         The Accuracy graph uses a truncated 99–100% vertical scale to make
         small differences visible. Bar heights should not be interpreted
         as starting from zero. The metric comparison graph uses a 0–100% scale.
-
     </div>
 
-    <!-- CONFUSION MATRIX -->
+    <h4 class="section-title">
+        <i class="bi bi-radar text-primary"></i>
+        Latest URL Prediction
+    </h4>
+
+    {% if last_scan %}
+    <div class="latest-scan-card mb-4">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+            <div>
+                <h5 class="fw-bold mb-2">Most Recently Scanned URL</h5>
+                <div class="scan-url">{{ last_scan.url }}</div>
+            </div>
+            <div>
+                <span class="prediction-status {{ 'status-phishing' if last_scan.prediction == 'Phishing' else 'status-legitimate' }}">
+                    {{ last_scan.prediction }}
+                </span>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+                <div class="metric-box">
+                    <div class="metric-label">Final Majority Vote</div>
+                    <div class="metric-value">{{ last_scan.prediction }}</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="metric-box">
+                    <div class="metric-label">Risk Level</div>
+                    <div class="metric-value">{{ last_scan.risk }}</div>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="fw-bold mb-1">Prediction by Each Algorithm</h6>
+        <p class="chart-description">
+            This chart shows the prediction for this URL only.
+            It updates when you scan another URL.
+        </p>
+
+        <div class="chart-container">
+            <canvas id="urlPredictionChart"></canvas>
+        </div>
+
+        <div class="small text-secondary mt-2">
+            Green = Legitimate, Red = Phishing.
+            This is a classification result, not a model accuracy score.
+        </div>
+
+        <div id="predictionChartMessage"
+             class="small text-danger mt-2" style="display:none;"></div>
+    </div>
+
+    {% else %}
+    <div class="alert alert-info mb-4">
+        <strong>No URL scanned yet.</strong>
+        Open the URL Scanner, analyze a URL, and return here to see
+        its individual model predictions.
+        <a href="{{ url_for('scanner') }}" class="alert-link">
+            Go to URL Scanner
+        </a>
+    </div>
+    {% endif %}
 
     <h4 class="section-title">Confusion Matrix Heatmaps</h4>
 
     <div class="row g-3 mb-4">
-
         {% for key, model in models.items() %}
-
         <div class="col-lg-4">
-
             <div class="table-card">
-
-                <h5 class="fw-bold text-center mb-2">
-                    {{ model.name }}
-                </h5>
-
-                <p class="small text-secondary text-center">
-                    Actual vs Predicted
-                </p>
-
+                <h5 class="fw-bold text-center mb-2">{{ model.name }}</h5>
+                <p class="small text-secondary text-center">Actual vs Predicted</p>
                 <div class="table-responsive">
-
                     <table class="table table-bordered text-center align-middle mb-0">
-
                         <thead>
                             <tr>
                                 <th></th>
@@ -445,215 +430,164 @@
                                 <th>Pred. Phishing</th>
                             </tr>
                         </thead>
-
                         <tbody>
-
                             <tr>
                                 <th>Actual Legit.</th>
-
-                                <td class="matrix-cell heatmap-tn">
-                                    {{ model.confusion_matrix[0][0] }}
-                                </td>
-
-                                <td class="matrix-cell heatmap-fp">
-                                    {{ model.confusion_matrix[0][1] }}
-                                </td>
+                                <td class="matrix-cell heatmap-tn">{{ model.confusion_matrix[0][0] }}</td>
+                                <td class="matrix-cell heatmap-fp">{{ model.confusion_matrix[0][1] }}</td>
                             </tr>
-
                             <tr>
                                 <th>Actual Phishing</th>
-
-                                <td class="matrix-cell heatmap-fn">
-                                    {{ model.confusion_matrix[1][0] }}
-                                </td>
-
-                                <td class="matrix-cell heatmap-tp">
-                                    {{ model.confusion_matrix[1][1] }}
-                                </td>
+                                <td class="matrix-cell heatmap-fn">{{ model.confusion_matrix[1][0] }}</td>
+                                <td class="matrix-cell heatmap-tp">{{ model.confusion_matrix[1][1] }}</td>
                             </tr>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
                 <div class="matrix-legend">
-
-                    <span class="legend-item">
-                        <span class="legend-color heatmap-tn"></span> TN
-                    </span>
-
-                    <span class="legend-item">
-                        <span class="legend-color heatmap-fp"></span> FP
-                    </span>
-
-                    <span class="legend-item">
-                        <span class="legend-color heatmap-fn"></span> FN
-                    </span>
-
-                    <span class="legend-item">
-                        <span class="legend-color heatmap-tp"></span> TP
-                    </span>
-
+                    <span class="legend-item"><span class="legend-color heatmap-tn"></span> TN</span>
+                    <span class="legend-item"><span class="legend-color heatmap-fp"></span> FP</span>
+                    <span class="legend-item"><span class="legend-color heatmap-fn"></span> FN</span>
+                    <span class="legend-item"><span class="legend-color heatmap-tp"></span> TP</span>
                 </div>
-
             </div>
-
         </div>
-
         {% endfor %}
-
     </div>
 
-    <!-- DATASET INFORMATION -->
+    <div class="alert alert-secondary small mb-4">
+        <strong>Confusion Matrix:</strong>
+        TN = legitimate URLs correctly identified; FP = legitimate URLs
+        incorrectly flagged as phishing; FN = phishing URLs missed by the
+        model; TP = phishing URLs correctly identified.
+    </div>
 
     <h4 class="section-title">Dataset Information</h4>
 
     <div class="row g-3 mb-4">
-
         <div class="col-md-3">
             <div class="metric-box">
                 <div class="metric-label">Total Samples</div>
-                <div class="metric-value">
-                    {{ "{:,}".format(dataset.get('total_samples', 0)) }}
-                </div>
+                <div class="metric-value">{{ "{:,}".format(dataset.get('total_samples', 0)) }}</div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="metric-box">
                 <div class="metric-label">Training Samples</div>
-                <div class="metric-value">
-                    {{ "{:,}".format(dataset.get('training_samples', 0)) }}
-                </div>
+                <div class="metric-value">{{ "{:,}".format(dataset.get('training_samples', 0)) }}</div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="metric-box">
                 <div class="metric-label">Testing Samples</div>
-                <div class="metric-value">
-                    {{ "{:,}".format(dataset.get('testing_samples', 0)) }}
-                </div>
+                <div class="metric-value">{{ "{:,}".format(dataset.get('testing_samples', 0)) }}</div>
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="metric-box">
                 <div class="metric-label">Features Used</div>
                 <div class="metric-value">10</div>
             </div>
         </div>
-
     </div>
-
-    <!-- CLASS DISTRIBUTION -->
 
     <div class="table-card mb-4">
-
         <h5 class="fw-bold mb-3">Class Distribution</h5>
-
         <div class="row g-3">
-
             <div class="col-md-6">
-
                 <div class="metric-box">
-
                     <div class="metric-label">Legitimate URLs</div>
-
-                    <div class="metric-value">
-                        {{ "{:,}".format(dataset.get('legitimate_samples', 0)) }}
-                    </div>
-
+                    <div class="metric-value">{{ "{:,}".format(dataset.get('legitimate_samples', 0)) }}</div>
                     <span class="small text-secondary">Label 0</span>
-
                 </div>
-
             </div>
-
             <div class="col-md-6">
-
                 <div class="metric-box">
-
                     <div class="metric-label">Phishing URLs</div>
-
-                    <div class="metric-value">
-                        {{ "{:,}".format(dataset.get('phishing_samples', 0)) }}
-                    </div>
-
+                    <div class="metric-value">{{ "{:,}".format(dataset.get('phishing_samples', 0)) }}</div>
                     <span class="small text-secondary">Label 1</span>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- EVALUATION METRICS -->
+    {% set total_count = dataset.get('total_samples', 0) %}
+    {% set legitimate_count = dataset.get('legitimate_samples', 0) %}
+    {% set phishing_count = dataset.get('phishing_samples', 0) %}
+
+    {% if total_count > 0 %}
+    <div class="alert alert-info mb-4">
+        <h6 class="fw-bold">Understanding Dataset Imbalance</h6>
+        <p class="mb-2">
+            The dataset contains
+            {{ "{:.2f}".format(legitimate_count / total_count * 100) }}%
+            legitimate URLs and
+            {{ "{:.2f}".format(phishing_count / total_count * 100) }}%
+            phishing URLs. There are approximately
+            {{ "{:.1f}".format(phishing_count / legitimate_count) if legitimate_count else "N/A" }}
+            phishing samples for every legitimate sample.
+        </p>
+        <p class="mb-0">
+            This is a class-imbalanced dataset. Accuracy alone can hide poor
+            performance on the smaller legitimate class, so balanced accuracy,
+            precision, recall and the confusion matrix are also reported.
+        </p>
+    </div>
+    {% endif %}
+
+    <h4 class="section-title">Model Testing Methodology</h4>
+    <div class="table-card mb-4">
+        <ul class="mb-0">
+            <li>The dataset is divided into 80% training data and 20% testing data.</li>
+            <li>Stratified splitting preserves the class proportions in both sets.</li>
+            <li>The same held-out test set is used to evaluate all three algorithms.</li>
+            <li>Metrics and confusion matrices are calculated from actual test predictions.</li>
+            <li>These results describe the supplied dataset and do not guarantee detection of every new phishing URL.</li>
+        </ul>
+    </div>
 
     <h4 class="section-title">Understanding Evaluation Metrics</h4>
-
     <div class="table-card mb-4">
-
-        <p>
-            <strong>Accuracy:</strong>
-            Overall proportion of correct predictions.
-        </p>
-
-        <p>
-            <strong>Balanced Accuracy:</strong>
-            Average recall across the classes.
-        </p>
-
-        <p>
-            <strong>Precision:</strong>
-            Proportion of predicted phishing cases that were actually phishing.
-        </p>
-
-        <p>
-            <strong>Recall:</strong>
-            Proportion of actual phishing cases correctly identified.
-        </p>
-
-        <p class="mb-0">
-            <strong>F1-Score:</strong>
-            Harmonic mean of precision and recall.
-        </p>
-
+        <p><strong>Accuracy:</strong> Overall proportion of correct predictions.</p>
+        <p><strong>Balanced Accuracy:</strong> Average recall across the classes.</p>
+        <p><strong>Precision:</strong> Proportion of predicted phishing cases that were actually phishing.</p>
+        <p><strong>Recall:</strong> Proportion of actual phishing cases correctly identified.</p>
+        <p class="mb-0"><strong>F1-Score:</strong> Harmonic mean of precision and recall.</p>
     </div>
 
-    <!-- LIMITATION -->
-
     <div class="alert alert-warning">
-
         <h6 class="fw-bold">
             <i class="bi bi-exclamation-triangle-fill"></i>
             Dataset Limitation
         </h6>
-
         <p class="mb-0">
-            The test dataset is highly imbalanced, with many more phishing
-            examples than legitimate examples. Therefore, accuracy alone
-            can be misleading. Balanced accuracy and the confusion matrix
-            should also be considered. These results do not guarantee
-            performance on new or real-world URLs.
+            The dataset contains far more phishing examples than legitimate
+            examples. Accuracy alone may therefore be misleading. Balanced
+            accuracy and the confusion matrix should also be considered.
+            The current scanner uses URL-text features only; it does not visit
+            the website, inspect page content, or verify the website owner.
+            Predictions are not a guarantee of safety.
         </p>
+    </div>
 
+    <h4 class="section-title">Future Scope</h4>
+    <div class="table-card mb-4">
+        <ul class="mb-0">
+            <li>Evaluate the models on a newer, independent dataset containing unseen URLs.</li>
+            <li>Increase and improve the variety of legitimate URL examples.</li>
+            <li>Explore additional URL and domain features and compare their contribution.</li>
+            <li>Monitor model performance as phishing URL patterns change over time.</li>
+        </ul>
     </div>
 
     <p class="footer-note text-center mt-4">
         PhishGuard | Machine Learning Based Phishing URL Detection
     </p>
-
 </div>
-
-<!-- MODEL DATA FOR JAVASCRIPT -->
 
 <div id="phishguard-model-data"
      data-models='{{ models | tojson | forceescape }}'
+     data-last-scan='{{ last_scan | tojson | forceescape }}'
      hidden>
 </div>
 
@@ -663,27 +597,256 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Read model data from HTML
     const dataElement = document.getElementById("phishguard-model-data");
 
     let modelData = {};
+    let lastScan = null;
 
     try {
         modelData = JSON.parse(dataElement.dataset.models || "{}");
     } catch (error) {
         console.error("Unable to read model data:", error);
+    }
+
+    try {
+        lastScan = JSON.parse(dataElement.dataset.lastScan || "null");
+    } catch (error) {
+        console.error("Unable to read latest scan:", error);
+    }
+
+    console.log("PhishGuard model data:", modelData);
+    console.log("PhishGuard latest scan:", lastScan);
+
+    if (typeof Chart === "undefined") {
+        console.error("Chart.js could not be loaded.");
         return;
     }
+
+    function normalizePrediction(value) {
+
+        if (value === undefined || value === null) return null;
+
+        if (typeof value === "object") {
+            value = value.prediction ??
+                    value.result ??
+                    value.label ??
+                    value.class ??
+                    null;
+        }
+
+        if (value === 0 || value === "0") return "Legitimate";
+        if (value === 1 || value === "1") return "Phishing";
+
+        if (typeof value === "string") {
+            const normalized = value.trim().toLowerCase();
+
+            if (normalized.includes("phishing")) return "Phishing";
+            if (normalized.includes("legitimate")) return "Legitimate";
+        }
+
+        return null;
+    }
+
+    function getModelPrediction(scan, possibleKeys) {
+
+        if (!scan || !scan.models) return null;
+
+        const predictions = scan.models;
+
+        for (const key of possibleKeys) {
+            if (Object.prototype.hasOwnProperty.call(predictions, key)) {
+
+                const result = normalizePrediction(predictions[key]);
+
+                if (result !== null) return result;
+            }
+        }
+
+        return null;
+    }
+
+    // ------------------------------------------
+    // LATEST URL PREDICTION CHART - FIXED
+    // ------------------------------------------
+
+    const urlPredictionCanvas = document.getElementById("urlPredictionChart");
+
+    if (urlPredictionCanvas && lastScan) {
+
+        const randomForest = getModelPrediction(
+            lastScan,
+            ["Random Forest", "random_forest", "randomForest"]
+        );
+
+        const svm = getModelPrediction(
+            lastScan,
+            ["SVM", "svm"]
+        );
+
+        const gradientBoosting = getModelPrediction(
+            lastScan,
+            ["Gradient Boosting", "gradient_boosting", "gradientBoosting"]
+        );
+
+        const majorityVote = normalizePrediction(lastScan.prediction);
+
+        const labels = [
+            "Random Forest",
+            "SVM",
+            "Gradient Boosting",
+            "Majority Vote"
+        ];
+
+        const predictions = [
+            randomForest,
+            svm,
+            gradientBoosting,
+            majorityVote
+        ];
+
+        console.log("Individual predictions:", predictions);
+
+        const predictionMessage = document.getElementById(
+            "predictionChartMessage"
+        );
+
+        const available = predictions.some(
+            value => value === "Phishing" || value === "Legitimate"
+        );
+
+        if (available) {
+
+            // Display length is 1 for both classes.
+            // Actual classification is represented by bar color.
+            const predictionValues = predictions.map(
+                value => value === null ? null : 1
+            );
+
+            const predictionColors = predictions.map(
+                value => value === "Phishing" ? "#e05252" :
+                         value === "Legitimate" ? "#24a68a" :
+                         "#cbd5e1"
+            );
+
+            const predictionLabels = predictions.map(
+                value => value || "Unavailable"
+            );
+
+            new Chart(urlPredictionCanvas, {
+
+                type: "bar",
+
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Prediction",
+                        data: predictionValues,
+                        backgroundColor: predictionColors,
+                        borderRadius: 8,
+                        borderSkipped: false,
+                        barThickness: 28
+                    }]
+                },
+
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return "Prediction: " +
+                                        predictionLabels[context.dataIndex];
+                                }
+                            }
+                        }
+                    },
+
+                    scales: {
+                        x: {
+                            display: false,
+                            min: 0,
+                            max: 1.15
+                        },
+
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                },
+
+                plugins: [{
+                    id: "predictionTextLabels",
+
+                    afterDatasetsDraw(chart) {
+
+                        const ctx = chart.ctx;
+                        const meta = chart.getDatasetMeta(0);
+
+                        ctx.save();
+                        ctx.font = "bold 12px Arial";
+                        ctx.textAlign = "left";
+                        ctx.textBaseline = "middle";
+
+                        meta.data.forEach((bar, index) => {
+
+                            if (predictions[index] === null) {
+                                return;
+                            }
+
+                            ctx.fillStyle = "#ffffff";
+
+                            ctx.fillText(
+                                predictionLabels[index],
+                                bar.x - 10,
+                                bar.y
+                            );
+                        });
+
+                        ctx.restore();
+                    }
+                }]
+            });
+
+            if (predictionMessage) {
+                predictionMessage.style.display = "none";
+            }
+
+        } else {
+
+            console.error(
+                "No individual model predictions found:",
+                lastScan
+            );
+
+            if (predictionMessage) {
+                predictionMessage.style.display = "block";
+                predictionMessage.textContent =
+                    "No individual model predictions found. Please scan a URL again.";
+            }
+        }
+    }
+
+    // ------------------------------------------
+    // MODEL PERFORMANCE DATA
+    // ------------------------------------------
 
     const entries = Object.values(modelData);
 
     if (entries.length === 0) {
-        console.warn("No model data available.");
+        console.warn("No model performance data available.");
         return;
     }
 
     const modelNames = entries.map(model => model.name);
-
     const accuracyValues = entries.map(model => Number(model.accuracy));
     const precisionValues = entries.map(model => Number(model.precision));
     const recallValues = entries.map(model => Number(model.recall));
@@ -691,13 +854,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const modelColors = ["#4f7ee8", "#24a68a", "#8b75d7"];
 
-    // Check Chart.js
-    if (typeof Chart === "undefined") {
-        console.error("Chart.js could not be loaded.");
-        return;
-    }
+    // ACCURACY CHART
 
-    // Accuracy Chart
     const accuracyCanvas = document.getElementById("accuracyChart");
 
     if (accuracyCanvas) {
@@ -708,7 +866,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             data: {
                 labels: modelNames,
-
                 datasets: [{
                     label: "Accuracy",
                     data: accuracyValues,
@@ -723,9 +880,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 maintainAspectRatio: false,
 
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
 
                     tooltip: {
                         callbacks: {
@@ -741,31 +896,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     y: {
                         min: 99,
                         max: 100,
-
                         title: {
                             display: true,
                             text: "Accuracy (%) - Zoomed Scale"
                         },
-
                         ticks: {
                             stepSize: 0.1,
                             callback: value => value.toFixed(1) + "%"
                         }
                     },
-
                     x: {
-                        grid: {
-                            display: false
-                        }
+                        grid: { display: false }
                     }
                 }
             },
 
             plugins: [{
                 id: "accuracyLabels",
-
                 afterDatasetsDraw(chart) {
-
                     const ctx = chart.ctx;
                     const meta = chart.getDatasetMeta(0);
 
@@ -775,24 +923,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     ctx.fillStyle = "#243047";
 
                     meta.data.forEach((bar, index) => {
-
                         ctx.fillText(
                             accuracyValues[index].toFixed(2) + "%",
                             bar.x,
                             bar.y - 8
                         );
-
                     });
 
                     ctx.restore();
                 }
             }]
-
         });
-
     }
 
-    // Precision, Recall and F1 Chart
+    // PRECISION, RECALL AND F1 CHART
+
     const metricsCanvas = document.getElementById("metricsChart");
 
     if (metricsCanvas) {
@@ -803,7 +948,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             data: {
                 labels: modelNames,
-
                 datasets: [
                     {
                         label: "Precision",
@@ -833,13 +977,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 plugins: {
                     legend: {
                         position: "bottom",
-
                         labels: {
                             usePointStyle: true,
                             padding: 15
                         }
                     },
-
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -854,29 +996,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     y: {
                         min: 0,
                         max: 100,
-
                         title: {
                             display: true,
                             text: "Percentage (%)"
                         },
-
                         ticks: {
                             callback: value => value + "%"
                         }
                     },
-
                     x: {
-                        grid: {
-                            display: false
-                        }
+                        grid: { display: false }
                     }
                 }
             }
-
         });
-
     }
-
 });
 </script>
 

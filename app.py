@@ -29,6 +29,7 @@ app.secret_key = os.environ.get(
     "phishguard-development-secret-key"
 )
 
+
 # --------------------------------------------------
 # LOAD MACHINE LEARNING MODELS
 # --------------------------------------------------
@@ -260,6 +261,7 @@ def dashboard():
     )
 
 
+
 # --------------------------------------------------
 # URL SCANNER ROUTE
 # --------------------------------------------------
@@ -293,13 +295,10 @@ def scanner():
 
         else:
             try:
-                # Extract URL features locally.
-                # This application does not visit the submitted website.
                 features = extract_features(scanned_url)
-
                 feature_df = pd.DataFrame([features])
 
-                # Predictions from all three ML models
+                # Individual model predictions
                 rf_prediction = int(
                     random_forest_model.predict(feature_df)[0]
                 )
@@ -339,7 +338,7 @@ def scanner():
                 else:
                     result = "Legitimate"
 
-                # Risk level based on model agreement
+                # Risk level
                 if phishing_votes == 3:
                     risk = "High"
                 elif phishing_votes == 2:
@@ -347,7 +346,25 @@ def scanner():
                 else:
                     risk = "Low"
 
-                # Store scan in database
+                # Save latest scan in session
+                session["last_scan"] = {
+                    "url": scanned_url,
+                    "prediction": result,
+                    "risk": risk,
+                    "models": model_results
+                }
+
+                session.modified = True
+
+                # DEBUG OUTPUT
+                print("\n========== PHISHGUARD DEBUG ==========")
+                print("URL:", scanned_url)
+                print("Individual Predictions:", predictions)
+                print("Model Results:", model_results)
+                print("Final Result:", result)
+                print("=======================================\n")
+
+                # Save scan in database
                 connection = get_db_connection()
 
                 try:
@@ -386,35 +403,6 @@ def scanner():
         model_results=model_results,
         error=error
     )
-
-
-# --------------------------------------------------
-# DELETE SCAN HISTORY
-# --------------------------------------------------
-
-@app.route("/delete_scan/<int:scan_id>", methods=["POST"])
-@login_required
-def delete_scan(scan_id):
-
-    connection = get_db_connection()
-
-    try:
-        connection.execute(
-            """
-            DELETE FROM scan_history
-            WHERE id = ? AND user_id = ?
-            """,
-            (scan_id, session["user_id"])
-        )
-
-        connection.commit()
-
-    finally:
-        connection.close()
-
-    flash("Scan record deleted successfully.", "success")
-    return redirect(url_for("dashboard"))
-
 
 # --------------------------------------------------
 # ABOUT PAGE
@@ -461,7 +449,8 @@ def ml_models():
         "ml_models.html",
         user_name=session.get("user_name"),
         models=metrics_data.get("models", {}),
-        dataset=metrics_data.get("dataset", {})
+        dataset=metrics_data.get("dataset", {}),
+        last_scan=session.get("last_scan")
     )
 
 

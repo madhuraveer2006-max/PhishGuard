@@ -162,7 +162,17 @@ metrics_data = {
         "legitimate_samples": int((y == 0).sum()),
         "phishing_samples": int((y == 1).sum()),
         "positive_class": "Phishing (1)",
-        "negative_class": "Legitimate (0)"
+        "negative_class": "Legitimate (0)",
+        "feature_count": int(len(FEATURES)),
+        "features": FEATURES,
+        "test_size": 0.20,
+        "split_strategy": "Stratified train-test split",
+        "random_state": 42,
+        "legitimate_percentage": round(float((y == 0).mean() * 100), 4),
+        "phishing_percentage": round(float((y == 1).mean() * 100), 4),
+        "imbalance_ratio": round(
+            float((y == 1).sum() / max((y == 0).sum(), 1)), 2
+        )
     },
     "models": all_metrics
 }
